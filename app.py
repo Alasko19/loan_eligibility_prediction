@@ -204,8 +204,24 @@ st.divider()
 
 with st.form("loan_prediction_form"):
 
-    st.header("👤 Personal Information")
+    st.header("🤖 Choose Your Prediction Model")
 
+    model_name = st.selectbox(
+
+        "Select Machine Learning Model",
+
+        options=[
+            "Logistic Regression",
+            "Decision Tree",
+            "Random Forest"
+        ],
+        index=2,
+        help="Choose the machine learning model you want to use."
+    )
+    st.divider()
+
+    st.header("👤 Personal Information")
+    
     st.caption("Enter the applicant's personal details.")
 
     gender = st.selectbox(
@@ -316,12 +332,14 @@ if submit_button:
     try:
 
         result, probability = predict_loan_eligibility(
-            applicant_data
+            applicant_data,
+            model_name
         )
 
         st.divider()
 
         st.header("📊 Prediction Results")
+        st.info(f"Prediction generated using: {model_name}")
 
         if result == "Eligible":
 
