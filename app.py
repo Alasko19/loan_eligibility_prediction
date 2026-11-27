@@ -333,7 +333,7 @@ if submit_button:
 
         result, probability = predict_loan_eligibility(
             applicant_data,
-            model_name="Random Forest"
+            model_name
         )
 
         st.divider()
